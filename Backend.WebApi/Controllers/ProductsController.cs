@@ -11,11 +11,13 @@ using Backend.WebApi.Models;
 
 namespace Backend.WebApi.Controllers
 {
+    [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
         private Product[] products;
-
-        public ProductsController() 
+        private Review[] reviews;
+                
+        public ProductsController()
         {
             products = new Product[]
             {
@@ -23,6 +25,16 @@ namespace Backend.WebApi.Controllers
                 new Product() { Id=2, Name="Cola", Category= "Drik", Price=(decimal) 19.50 },
                 new Product() { Id=3, Name="Øl", Category= "Drik", Price=(decimal) 24.50 },
                 new Product() { Id=4, Name="Is", Category= "Slik", Price=(decimal) 14.50 },
+            };
+            reviews = new Review[]
+            {
+
+                new Review() {Id=9, Productid=1, Rating=1,Text="*" },
+                new Review() {Id=9, Productid=1, Rating=2,Text="**" },
+                new Review() {Id=9, Productid=2, Rating=3,Text="****" },
+                new Review() {Id=9, Productid=3, Rating=4,Text="super" },
+                new Review() {Id=9, Productid=3, Rating=5,Text="jubi" },
+                new Review() {Id=9, Productid=5, Rating=5,Text="fantstisk" },
             };
 
         }
@@ -38,8 +50,19 @@ namespace Backend.WebApi.Controllers
                 {
                     return Ok(item);
                 }
-            }      
-            return NotFound();            
+            }
+            return NotFound();
         }
+        [Route("{productid}/reviews")]
+        public IEnumerable<Review> GetReviewsForProduct(int productid)
+        {
+            return  reviews.Where(id => (id.Productid == productid));
+        }
+        //public IHttpActionResult TestRev(int id)
+        //{
+        //    return GetReviewsForProduct(id);
+
+        //}
+
     }
 }
