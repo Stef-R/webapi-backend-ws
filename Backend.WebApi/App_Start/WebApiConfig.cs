@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+
+using Backend.WebApi.Controllers;
+using static Backend.WebApi.Controllers.ProductsController;
 
 namespace Backend.WebApi
 {
@@ -19,6 +23,7 @@ namespace Backend.WebApi
             //    routeTemplate: "api/{controller}/{id}",
             //    defaults: new { id = RouteParameter.Optional }
             //);
+            config.Services.Replace(typeof(IExceptionHandler), new NotFoundHandler());
         }
     }
 }

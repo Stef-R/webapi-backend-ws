@@ -6,8 +6,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using Backend.WebApi;
 using Backend.WebApi.Models;
-
+using System.Web.Http.ExceptionHandling;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Http.Results;
 
 namespace Backend.WebApi.Controllers
 {
@@ -53,8 +57,26 @@ namespace Backend.WebApi.Controllers
                     return item;
                 }
             }
-            return null;
+            throw new NotFoundException();
         }
+
+        public class  NotFoundHandler : IExceptionHandler
+        {
+            public Task HandleAsync(ExceptionHandlerContext context, CancellationToken cancellationToken)
+            {
+                if (context.ExceptionContext.Exception is NotFoundException) 
+                {
+                    var scr    = new StatusCodeResult( HttpStatusCode.NotFound,context.Request);
+                    context.Result = scr;
+                    return Task.FromResult(1);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
         [Route("{productid}/reviews")]
         public IEnumerable<Review> GetReviewsForProduct(int productid)
         {
