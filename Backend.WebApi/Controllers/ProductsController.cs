@@ -29,19 +29,21 @@ namespace Backend.WebApi.Controllers
             reviews = new Review[]
             {
 
-                new Review() {Id=9, Productid=1, Rating=1,Text="*" },
-                new Review() {Id=9, Productid=1, Rating=2,Text="**" },
-                new Review() {Id=9, Productid=2, Rating=3,Text="****" },
-                new Review() {Id=9, Productid=3, Rating=4,Text="super" },
-                new Review() {Id=9, Productid=3, Rating=5,Text="jubi" },
-                new Review() {Id=9, Productid=5, Rating=5,Text="fantstisk" },
+                new Review() {Id=1, Productid=1, Rating=1,Text="*" },
+                new Review() {Id=2, Productid=1, Rating=2,Text="**" },
+                new Review() {Id=3, Productid=2, Rating=3,Text="****" },
+                new Review() {Id=4, Productid=3, Rating=4,Text="super" },
+                new Review() {Id=5, Productid=3, Rating=5,Text="jubi" },
+                new Review() {Id=6, Productid=5, Rating=5,Text="fantstisk" },
             };
 
         }
+        [Route("")]
         public IEnumerable<Product> GetAllProducts()
         {
             return products;
         }
+        [Route("{id}")]
         public IHttpActionResult GetProducts(int id)
         {
             foreach (var item in products)
