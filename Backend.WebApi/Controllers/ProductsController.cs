@@ -44,16 +44,16 @@ namespace Backend.WebApi.Controllers
             return products;
         }
         [Route("{id}")]
-        public IHttpActionResult GetProducts(int id)
+        public Product GetProduct(int id)
         {
             foreach (var item in products)
             {
                 if (item.Id == id)
                 {
-                    return Ok(item);
+                    return item;
                 }
             }
-            return NotFound();
+            return null;
         }
         [Route("{productid}/reviews")]
         public IEnumerable<Review> GetReviewsForProduct(int productid)
