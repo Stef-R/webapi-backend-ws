@@ -28,9 +28,29 @@ namespace Backend.WebApi
             CancellationToken cancellationToken, 
             Func<Task<HttpResponseMessage>> continuation)
         {
+            //HttpResponseMessage response = null;
             // do
             Debug.WriteLine("før kald");
-            HttpResponseMessage response = await continuation();
+            var header = actionContext.Request.Headers.FirstOrDefault(h => h.Key =="X-Version");
+
+
+
+            if (header.Key != null)
+            {
+                var version = header.Value.FirstOrDefault();
+                if (version == "42")
+                {
+                    Debug.WriteLine("EQ 42 true");
+
+                }
+
+            }
+                    HttpResponseMessage response = await continuation();
+            if (true)
+            {
+            }
+
+
 
             //do 
 
