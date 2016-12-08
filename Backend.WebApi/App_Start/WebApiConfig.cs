@@ -15,6 +15,9 @@ namespace Backend.WebApi
         {
             // Web API configuration and services
 
+            // Reg filter
+            config.Filters.Add(new VerisionCheckFilter());
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

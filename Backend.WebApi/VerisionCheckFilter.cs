@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -28,14 +29,16 @@ namespace Backend.WebApi
             Func<Task<HttpResponseMessage>> continuation)
         {
             // do
+            Debug.WriteLine("før kald");
             HttpResponseMessage response = await continuation();
 
             //do 
 
+            Debug.WriteLine("efter kald");
             return response;
 
 
-            //throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }
