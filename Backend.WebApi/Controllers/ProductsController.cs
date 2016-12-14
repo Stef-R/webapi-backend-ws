@@ -27,13 +27,14 @@ namespace Backend.WebApi.Controllers
                 
         public ProductsController()
         {
-            products = new Product[]
-            {
-                new Product() { PartitionKey="xx", RowKey="1", Name="Pizza", Category= "Mad", Price=(double) 49.50 },
-                new Product() { PartitionKey="xx", RowKey="2", Name="Cola", Category= "Drik", Price=(double) 19.50 },
-                new Product() { PartitionKey="xx", RowKey="3", Name="Øl", Category= "Drik", Price=(double) 24.50 },
-                new Product() { PartitionKey="xx", RowKey="4", Name="Is", Category= "Slik", Price=(double) 14.50 },
-            };
+            // til init
+            //products = new Product[]
+            //{
+            //    new Product() { PartitionKey="xx", RowKey="1", Name="Pizza", Category= "Mad", Price=(double) 49.50 },
+            //    new Product() { PartitionKey="xx", RowKey="2", Name="Cola", Category= "Drik", Price=(double) 19.50 },
+            //    new Product() { PartitionKey="xx", RowKey="3", Name="Øl", Category= "Drik", Price=(double) 24.50 },
+            //    new Product() { PartitionKey="xx", RowKey="4", Name="Is", Category= "Slik", Price=(double) 14.50 },
+            //};
             reviews = new Review[]
             {
 
@@ -77,7 +78,8 @@ namespace Backend.WebApi.Controllers
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return products;
+            // return products;  // ved INIT af data til Cloud
+
         }
         //[Route("{id}")]
         //public Product GetProduct(int id)

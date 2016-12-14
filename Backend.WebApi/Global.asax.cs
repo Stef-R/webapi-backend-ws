@@ -15,7 +15,7 @@ namespace Backend.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             ProductsController prodCrlt = new ProductsController();
-            prodCrlt.InitializeSample();
+            //prodCrlt.InitializeSample();   // Data er lagt op
         }
     }
 }
